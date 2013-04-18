@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="koodaamo.productbehaviors">
+
+  <includeDependencies package="." />
+
+  <i18n:registerTranslations directory="locales" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="Provide brand and model and title from them"
+      directory="profiles/default"
+      description="Extension profile for Provide brand and model and title from them"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <plone:behavior
+      title="Basic product information"
+      description="Adds brand and model"
+      provides=".branded.IBasicBrandInfo"
+      factory=".branded.BasicBrandInfo" 
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
+
+  <plone:behavior
+      title="Physical item information"
+      description="Adds dimensions and weight"
+      provides=".physical.IBasicPhysicalInfo"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      />
+
+</configure>
